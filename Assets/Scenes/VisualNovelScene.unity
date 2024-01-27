@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 1492045211013053232, guid: 19e2e4406c5853a498865440543889a5, type: 3}
       propertyPath: StartingStory
       value: 
-      objectReference: {fileID: 11400000, guid: ce9cd3799bc9bc34794cd3d8e3ec9e0c, type: 2}
+      objectReference: {fileID: 11400000, guid: c9b58abcea6e1c3418aff9a5190d20b4, type: 2}
     - target: {fileID: 1492045211013053232, guid: 19e2e4406c5853a498865440543889a5, type: 3}
       propertyPath: CharacterManager
       value: 
@@ -670,10 +670,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4784810313972785027, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
-      propertyPath: ChoiceButton
-      value: 
-      objectReference: {fileID: 9188443421959378659, guid: 3817cef7bc08f2a46a0abf82f1cbee14, type: 3}
     - target: {fileID: 4784810313972785027, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: BackgroundFade
       value: 
