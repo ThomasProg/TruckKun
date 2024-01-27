@@ -251,7 +251,7 @@ public class StoryGraphEditor : Editor
 			position.x += 500;
 		}
 
-		//Dictionary<StoryElement, List<int>> choicesToNext_id = new Dictionary<StoryElement, List<int>>();
+		// Choice Nodes
 		foreach (KeyValuePair<StoryElement, List<int>> pair in choicesToNext_id)
 		{
 			pair.Key.ClearDynamicPorts();
@@ -261,15 +261,24 @@ public class StoryGraphEditor : Editor
 				// Get output and input ports
 				string portName = "Choice" + i;
 				NodePort fromPort = pair.Key.AddDynamicOutput(typeof(NodePort), ConnectionType.Override, TypeConstraint.Inherited, portName);
-				NodePort toPort = idToNode[index].GetInputPort("PreviousNode");
-
-				// Make sure the ports are not null
-				if (fromPort != null && toPort != null)
+				StoryElement next;
+				if (idToNode.TryGetValue(index, out next))
 				{
-					// Connect the nodes
-					fromPort.Connect(toPort);
-					EditorUtility.SetDirty(storyGraph);
+					NodePort toPort = next.GetInputPort("PreviousNode");
+
+					// Make sure the ports are not null
+					if (fromPort != null && toPort != null)
+					{
+						// Connect the nodes
+						fromPort.Connect(toPort);
+						EditorUtility.SetDirty(storyGraph);
+					}
 				}
+				else
+				{
+					Debug.LogError("Choice leading to id " + index + " , but this id doesn't exist.");
+				}
+
 				i++;
 			}
 		}
