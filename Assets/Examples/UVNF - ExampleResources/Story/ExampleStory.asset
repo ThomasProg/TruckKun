@@ -1489,7 +1489,6 @@ MonoBehaviour:
   - {fileID: 7815111530212063091}
   - {fileID: 3964138587138135276}
   - {fileID: 5270346473795117227}
-  - {fileID: 3392395343835044027}
   - {fileID: 0}
   StoryNames:
   - ExampleStory
@@ -1997,7 +1996,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: NextNode
-        node: {fileID: 3392395343835044027}
+        node: {fileID: 5142048429619549042}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -2037,77 +2036,6 @@ MonoBehaviour:
     _dynamic: 0
   CharacterName: Velorexe
   NewSprite: {fileID: 21300000, guid: 5a263f0efe0c15242bcc465bfaa22a6c, type: 3}
---- !u!114 &3392395343835044027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17dc0ccc050a715498f5cde8188fd4d1, type: 3}
-  m_Name: Load Minigame
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1576, y: -248}
-  ports:
-    keys:
-    - PreviousNode
-    - NextNode
-    values:
-    - _fieldName: PreviousNode
-      _node: {fileID: 3392395343835044027}
-      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: NextNode
-        node: {fileID: 5142048429619549042}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: NextNode
-      _node: {fileID: 3392395343835044027}
-      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: PreviousNode
-        node: {fileID: 3219563264312694754}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  Active: 0
-  Next: {fileID: 3219563264312694754}
-  PreviousNode:
-    _fieldName: 
-    _node: {fileID: 0}
-    _typeQualifiedName: 
-    connections: []
-    _direction: 0
-    _connectionType: 0
-    _typeConstraint: 0
-    _dynamic: 0
-  NextNode:
-    _fieldName: 
-    _node: {fileID: 0}
-    _typeQualifiedName: 
-    connections: []
-    _direction: 0
-    _connectionType: 0
-    _typeConstraint: 0
-    _dynamic: 0
-  minigames:
-  - TestMiniGame
-  - Crane
-  - DrivingGame
-  - Minigame3
-  - Minigame4
-  - Minigame5
-  selectedOptionIndex: 0
 --- !u!114 &3964138587138135276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,14 +2344,14 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: PreviousNode
-        node: {fileID: 3392395343835044027}
+        node: {fileID: 3219563264312694754}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
   Active: 0
-  Next: {fileID: 3392395343835044027}
+  Next: {fileID: 3219563264312694754}
   PreviousNode:
     _fieldName: 
     _node: {fileID: 0}
