@@ -18,6 +18,8 @@ namespace UVNF.Core.Story.Utility
 
 		public Sprite background;
 
+		public string backgroundName;
+
 #if UNITY_EDITOR
 		public override void DisplayLayout(Rect layoutRect, GUIStyle label)
 		{

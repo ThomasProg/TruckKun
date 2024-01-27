@@ -73,6 +73,8 @@ public class StoryGraphEditor : Editor
 		Dictionary<int, StoryElement> idToNode = new Dictionary<int, StoryElement>();
 		Dictionary<StoryElement, int> nodeToNext_id = new Dictionary<StoryElement, int>();
 
+		Dictionary<StoryElement, List<int>> choicesToNext_id = new Dictionary<StoryElement, List<int>>();
+
 		StartElement startElement = storyGraph.AddNode<StartElement>();
 		startElement.IsRoot = true;
 		nodes.Add(startElement);
@@ -88,61 +90,61 @@ public class StoryGraphEditor : Editor
 			object backgroundObject;
 			if (dic.TryGetValue("Background", out backgroundObject))
 			{
-				
-				string id = backgroundObject as string;
-				Debug.LogWarning("TODO : conversion to ChangeBackground()");
-				//newNode = ScriptableObject.CreateInstance<ChangeBackground>(); // @TODO : set background object
-				newNode = storyGraph.AddNode<ChangeBackground>();
+				string backgroundID = backgroundObject as string;
+				ChangeBackground changeBackground = storyGraph.AddNode<ChangeBackground>();
+				changeBackground.backgroundName = backgroundID;
+				newNode = changeBackground;
 			}
 
 			object speaker;
 			if (dic.TryGetValue("Speaker", out speaker))
 			{
 				// is Choice
-				//object choices;
-				//if (dic.TryGetValue("choices", out choices))
-				//{
-				//	ChoiceElement choiceElem = storyGraph.AddNode<ChoiceElement>();
-				//	newNode = choiceElem;
+				object choices;
+				if (dic.TryGetValue("choices", out choices))
+				{
+					ChoiceElement choiceElem = storyGraph.AddNode<ChoiceElement>();
+					newNode = choiceElem;
 
-				//	object[] choicesList = JsonConvert.DeserializeObject<object[]>(choices.ToString());
+					object[] choicesList = JsonConvert.DeserializeObject<object[]>(choices.ToString());
 
-				//	foreach (object choice in choicesList)
-				//	{
-				//		object next_id;
-				//		if (dic.TryGetValue("next_id", out next_id))
-				//		{
-				//			choiceElem.AddChoice();
-				//			choiceElem.Choices[choiceElem.Choices.Count - 1].
-				//			//dialogue.Dialogue = next_id.ToString();
-				//		}
+					List<int> next_idList = new List<int>();
+					foreach (object choice in choicesList)
+					{
+						choiceElem.AddChoice();
 
-				//		object jp;
-				//		if (dic.TryGetValue("JP", out jp))
-				//		{
-				//			//dialogue.Dialogue = jp.ToString();
-				//		}
+						Dictionary<string, object> choiceAttributes = JsonConvert.DeserializeObject<Dictionary<string, object>>(choice.ToString());
 
-				//		object en;
-				//		if (dic.TryGetValue("EN", out en))
-				//		{
-				//			// @TODO 
-				//		}
-				//	}
+						object next_id;
+						if (choiceAttributes.TryGetValue("next_id", out next_id))
+						{
+							next_idList.Add(JsonConvert.DeserializeObject<int>(next_id.ToString()));
+							//choiceElem.AddChoice();
+							//dialogue.Dialogue = next_id.ToString();
+						}
+						else
+						{
+							Debug.LogError("Missing next_id in choices");
+						}
 
-				//	//object jp;
-				//	//if (dic.TryGetValue("JP", out jp))
-				//	//{
-				//	//	dialogue.Dialogue = jp.ToString();
+						object jp;
+						if (choiceAttributes.TryGetValue("JP", out jp))
+						{
+							choiceElem.Choices[choiceElem.Choices.Count - 1] = jp.ToString();
+							//dialogue.Dialogue = jp.ToString();
+						}
 
-				//	//object en;
-				//	//if (dic.TryGetValue("EN", out en))
-				//	//{
-				//	//	// @TODO 
-				//	//}
-				//}
-				//// is Dialogue
-				//else
+						object en;
+						if (choiceAttributes.TryGetValue("EN", out en))
+						{
+							// @TODO 
+						}
+					}
+
+					choicesToNext_id.Add(choiceElem, next_idList);
+				}
+				// is Dialogue
+				else
 				{
 					DialogueElement dialogue = storyGraph.AddNode<DialogueElement>();
 					newNode = dialogue;
@@ -207,6 +209,8 @@ public class StoryGraphEditor : Editor
 		{
 			StoryElement node = nodes[i];
 			int next_id;
+
+			// If there is a next_id
 			if (nodeToNext_id.TryGetValue(node, out next_id))
 			{
 				position.y += 500;
@@ -224,6 +228,7 @@ public class StoryGraphEditor : Editor
 					EditorUtility.SetDirty(storyGraph);
 				}
 			}
+			// else
 			else if (i < nodes.Count - 1)
 			{
 				StoryElement nextNode = nodes[i+1];
