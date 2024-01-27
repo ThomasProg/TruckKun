@@ -1,10 +1,12 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DrivingGameManager : MonoBehaviour
 {
+    public Minigame minigame;
     public DrivingSpawnManager spawnManager;
     public TruckScript truck;
     
@@ -92,10 +94,20 @@ public class DrivingGameManager : MonoBehaviour
         endingDisplay.SetActive(true);
         winDisplay.SetActive(isWin);
         loseDisplay.SetActive(!isWin);
+
+        if (isWin)
+        {
+            Invoke("CloseMinigame", 5f);
+        }
     }
 
     public void HideEnding()
     {
         endingDisplay.SetActive(false);
+    }
+
+    public void CloseMinigame()
+    {
+        minigame.isOver = true;
     }
 }

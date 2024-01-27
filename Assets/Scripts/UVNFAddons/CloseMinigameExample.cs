@@ -16,14 +16,6 @@ public class CloseMinigame : MonoBehaviour
 
 	void DelayedAction()
 	{
-		SceneManager.UnloadSceneAsync(gameObject.scene);
-
-		GameObject[] allObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-
-		foreach (GameObject obj in allObjects)
-		{
-			// Set each GameObject and its children to inactive
-			obj.SetActive(true);
-		}
+		minigame.FinishMinigame();
 	}
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UVNF.Core.UI;
@@ -18,7 +19,7 @@ namespace UVNF.Core.Story.Utility
 		// Default Minigames have been added because the nodes don't seem to be refreshed when new parameters are added
 		// The strings are the names of the scenes
 		[SerializeField]
-		private string[] minigames = { "TestMiniGame", "Crane", "Minigame2", "Minigame3", "Minigame4", "Minigame5" };
+		private string[] minigames = { "TestMiniGame", "Crane", "DrivingGame", "Minigame3", "Minigame4", "Minigame5" };
 
 		// Use index to make sure that even if we rename a scene, it updates the nodes easily
 		[SerializeField]
@@ -52,6 +53,9 @@ namespace UVNF.Core.Story.Utility
 		}
 #endif
 
+		public List<Canvas> deactivatedCanvas = new();
+		public List<Camera> deactivatedCamera = new();
+		
 		public void HideMainScene()
 		{
 			// Find all GameObjects in the scene
@@ -59,8 +63,19 @@ namespace UVNF.Core.Story.Utility
 
 			foreach (GameObject obj in allObjects)
 			{
-				// Set each GameObject and its children to inactive
-				obj.SetActive(false);
+				var objCanvas = obj.GetComponent<Canvas>();
+				if (objCanvas != null)
+				{
+					objCanvas.enabled = false;
+					deactivatedCanvas.Add(objCanvas);
+				}
+
+				var objCamera = obj.GetComponent<Camera>();
+				if (objCamera != null)
+				{
+					objCamera.enabled = false;
+					deactivatedCamera.Add(objCamera);
+				}
 			}
 		}
 
@@ -104,13 +119,15 @@ namespace UVNF.Core.Story.Utility
 			yield return new WaitUntil(() => minigame.isOver);
 
 			SceneManager.UnloadSceneAsync(minigame.gameObject.scene);
-
-			GameObject[] allObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-
-			foreach (GameObject obj in allObjects)
+			
+			foreach(var objCanvas in deactivatedCanvas)
 			{
-				// Set each GameObject and its children to inactive
-				obj.SetActive(true);
+				objCanvas.enabled = true;
+			}
+
+			foreach (var objCamera in deactivatedCamera)
+			{
+				objCamera.enabled = true;
 			}
 		}
 	}
