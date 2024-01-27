@@ -17,23 +17,28 @@ namespace UVNF.Core.Story.Utility
 		public override StoryElementTypes Type => StoryElementTypes.Utility;
 
 		public Sprite background;
-
 		public string backgroundName;
+        public bool Fade = true;
+        public float FadeTime = 1f;
 
 #if UNITY_EDITOR
-		public override void DisplayLayout(Rect layoutRect, GUIStyle label)
+        public override void DisplayLayout(Rect layoutRect, GUIStyle label)
 		{
 			background = (Sprite) EditorGUILayout.ObjectField("Background", background, typeof(Sprite), true);
-		}
+
+            Fade = GUILayout.Toggle(Fade, "Fade");
+            if (Fade)
+                FadeTime = EditorGUILayout.FloatField("Fade out time", FadeTime);
+        }
 #endif
 
 		public override IEnumerator Execute(UVNFManager managerCallback, UVNFCanvas canvas)
 		{
-			//SceneManager.LoadScene(scene);
-
-			// TODO : Set background
-
-			return null;
-		}
+            if (Fade)
+                canvas.ChangeBackground(background, FadeTime);
+            else
+                canvas.ChangeBackground(background);
+            return null;
+        }
 	}
 }
