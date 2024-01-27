@@ -147,6 +147,12 @@ public class StoryGraphEditor : Editor
 					DialogueElement dialogue = storyGraph.AddNode<DialogueElement>();
 					newNode = dialogue;
 
+					object speakerObj;
+					if (dic.TryGetValue("Speaker", out speakerObj))
+					{
+						dialogue.CharacterName = speakerObj.ToString();
+					}
+
 					object jp;
 					if (dic.TryGetValue("JP", out jp))
 					{
