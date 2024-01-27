@@ -1489,6 +1489,7 @@ MonoBehaviour:
   - {fileID: 7815111530212063091}
   - {fileID: 3964138587138135276}
   - {fileID: 5270346473795117227}
+  - {fileID: 3433798713844958999}
   StoryNames:
   - ExampleStory
 --- !u!114 &299300065002464599
@@ -1858,13 +1859,7 @@ MonoBehaviour:
       _node: {fileID: 2759896806774999601}
       _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections:
-      - fieldName: NextNode
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: NextNode
-        node: {fileID: 5270346473795117227}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -2035,6 +2030,91 @@ MonoBehaviour:
     _dynamic: 0
   CharacterName: Velorexe
   NewSprite: {fileID: 21300000, guid: 5a263f0efe0c15242bcc465bfaa22a6c, type: 3}
+--- !u!114 &3433798713844958999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5078e2883b71e7438a5d965f15f77c8, type: 3}
+  m_Name: Choice Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -296, y: -264}
+  ports:
+    keys:
+    - PreviousNode
+    - NextNode
+    - Choice0
+    - Choice1
+    values:
+    - _fieldName: PreviousNode
+      _node: {fileID: 3433798713844958999}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: NextNode
+        node: {fileID: 5270346473795117227}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: 3433798713844958999}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Choice0
+      _node: {fileID: 3433798713844958999}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+    - _fieldName: Choice1
+      _node: {fileID: 3433798713844958999}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+  Active: 0
+  Next: {fileID: 0}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  Choices:
+  - test1
+  - test2
+  ShuffleChocies: 1
+  HideDialogue: 0
 --- !u!114 &3964138587138135276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2412,14 +2492,14 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: PreviousNode
-        node: {fileID: 2759896806774999601}
+        node: {fileID: 3433798713844958999}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
   Active: 0
-  Next: {fileID: 2759896806774999601}
+  Next: {fileID: 3433798713844958999}
   PreviousNode:
     _fieldName: 
     _node: {fileID: 0}
