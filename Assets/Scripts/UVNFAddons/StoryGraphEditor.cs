@@ -31,6 +31,11 @@ public class StoryGraphEditor : Editor
 	[SerializeField]
 	private string subFolder = "JSON";
 
+	[SerializeField]
+	string assetDestinationPath = "Assets/ExampleStory.asset";
+	[SerializeField]
+	string assetSourcePath = "Assets/ExampleStory.asset";
+
 	void ExportJson(StoryGraph storyGraph, string subFolder)
 	{
 		// Add a custom button to the inspector
@@ -291,16 +296,13 @@ public class StoryGraphEditor : Editor
 		}
 	}
 
-	void ImportJson(StoryGraph s, string subFolder)
+	void ImportJson(StoryGraph s, string subFolder, string assetDestinationPath = "Assets/ExampleStory.asset")
 	{
 		// Create an instance of the ScriptableObject
 		StoryGraph storyGraph = ScriptableObject.CreateInstance<StoryGraph>();
 
-		// Specify the asset path where you want to save it
-		string assetPath = "Assets/ExampleStory.asset";
-
 		// Create the asset at the specified path
-		AssetDatabase.CreateAsset(storyGraph, assetPath);
+		AssetDatabase.CreateAsset(storyGraph, assetDestinationPath);
 
 
 
@@ -354,7 +356,23 @@ public class StoryGraphEditor : Editor
 
 		ExportJson(storyGraph, subFolder);
 
-		GUILayout.Space(10);
+		GUILayout.Space(300);
+
+		//GUILayout.BeginHorizontal();
+		//GUILayout.Label("From : ");
+		//// Specify the asset path where you want to save it
+		//assetSourcePath = GUILayout.TextField(assetSourcePath);
+
+		//GUILayout.EndHorizontal();
+
+		//GUILayout.Space(10);
+
+		//GUILayout.BeginHorizontal();
+		//GUILayout.Label("To : ");
+		//// Specify the asset path where you want to save it
+		//assetDestinationPath = GUILayout.TextField(assetDestinationPath);
+
+		//GUILayout.EndHorizontal();
 
 		ImportJsonNextFrame(storyGraph, subFolder);
 	}
