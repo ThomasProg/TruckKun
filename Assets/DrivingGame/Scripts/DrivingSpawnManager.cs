@@ -27,10 +27,10 @@ public class DrivingSpawnManager : MonoBehaviour
     void Awake()
     {
         _wavePatterns.Add(new List<GameObject> { CarPrefab, CarPrefab, null });
-        _wavePatterns.Add(new List<GameObject> { FastCarPrefab, FastCarPrefab, null });
-        _wavePatterns.Add(new List<GameObject> { CarPrefab, CarPrefab, PickupPrefab });
         _wavePatterns.Add(new List<GameObject> { CarPrefab, CarPrefab, FastCarPrefab });
-        _wavePatterns.Add(new List<GameObject> { FastCarPrefab, PickupPrefab, null });
+        _wavePatterns.Add(new List<GameObject> { CarPrefab, CarPrefab, PickupPrefab }); // pickup
+        _wavePatterns.Add(new List<GameObject> { FastCarPrefab, PickupPrefab, null }); // pickup
+        _wavePatterns.Add(new List<GameObject> { FastCarPrefab, FastCarPrefab, null });
     }
 
     public void InitializeGame()
