@@ -69,6 +69,54 @@ namespace UVNF.Editor.Story.Nodes
                 }
             }
         }
+        
+        [CustomNodeEditor(typeof(ConditionElement))]
+        public class ConditionNodeEditor : NodeEditor
+        {
+            ConditionElement node;
+
+            public override void OnCreate()
+            {
+                if (node == null) node = target as ConditionElement;
+                EditorUtility.SetDirty(node);
+                ReplaceTint(node.DisplayColor);
+            }
+
+            public override void OnHeaderGUI()
+            {
+                DisplayElementType(node.Type, node.ElementName, GetWidth());
+            }
+
+            public override void OnBodyGUI()
+            {
+                // base.OnBodyGUI();
+                Rect lastRect;
+                GUILayout.BeginVertical();
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label("Previous", EditorStyles.boldLabel);
+                    NodeEditorGUILayout.AddPortField(node.GetInputPort("PreviousNode"));
+                    GUILayout.Space(170f);
+                    GUILayout.Label("Next", EditorStyles.boldLabel);
+                    NodeEditorGUILayout.AddPortField(node.GetOutputPort("NextNode"));
+                    lastRect = GUILayoutUtility.GetLastRect();
+                }
+                
+                GUILayout.EndHorizontal();
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Space(235f);
+                    GUILayout.Label("Fails", EditorStyles.boldLabel);
+                    NodeEditorGUILayout.AddPortField(node.GetOutputPort("ConditionFails"));
+                    lastRect = GUILayoutUtility.GetLastRect();
+                }
+                
+                GUILayout.EndHorizontal(); // enter
+                GUILayout.EndVertical(); // tab
+                
+                node.DisplayNodeLayout(lastRect);
+            }
+        }
 
         [CustomNodeEditor(typeof(StoryElement))]
         public class StoryElementNodeEditor : NodeEditor

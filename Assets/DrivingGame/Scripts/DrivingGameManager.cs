@@ -83,7 +83,7 @@ public class DrivingGameManager : MonoBehaviour
         for (var i = 0; i < hitPointLayoutGroup.transform.childCount; i++)
         {
             var heartFill = hitPointLayoutGroup.transform.GetChild(i).GetChild(0).GetComponent<Image>();
-            heartFill.color = i < currentHitPoint ? Color.magenta : Color.black;
+            heartFill.enabled = i < currentHitPoint;
         }
     }
 
