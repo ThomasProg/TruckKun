@@ -1489,6 +1489,7 @@ MonoBehaviour:
   - {fileID: 7815111530212063091}
   - {fileID: 3964138587138135276}
   - {fileID: 5270346473795117227}
+  - {fileID: 0}
   StoryNames:
   - ExampleStory
 --- !u!114 &299300065002464599
