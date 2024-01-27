@@ -615,7 +615,7 @@ MonoBehaviour:
   CharacterTMP: {fileID: 4784810313999144729}
   CharacterNamePlate: {fileID: 4784810314665103804}
   TextDisplayInterval: 0.025
-  ChoiceButton: {fileID: 9188443421959378659, guid: 227200617dbfc424e83407f131c5315b, type: 3}
+  ChoiceButton: {fileID: 9188443421959378659, guid: 3817cef7bc08f2a46a0abf82f1cbee14, type: 3}
   ChoicePanelTransform: {fileID: 4784810314521086156}
   BackgroundImage: {fileID: 0}
   BackgroundFade: {fileID: 0}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.7773438
+  m_AspectRatio: 1.7778119
 --- !u!114 &4784810314356965895
 MonoBehaviour:
   m_ObjectHideFlags: 0
