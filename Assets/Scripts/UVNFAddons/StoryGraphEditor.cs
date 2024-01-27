@@ -65,7 +65,7 @@ public class StoryGraphEditor : Editor
 		}
 	}
 
-	void ImportScene(StoryGraph storyGraph, string sceneStr)
+	void ImportScene(StoryGraph storyGraph, string sceneStr, Vector2 position)
 	{
 		object[] events = JsonConvert.DeserializeObject<object[]>(sceneStr);
 
@@ -204,7 +204,6 @@ public class StoryGraphEditor : Editor
 		}
 
 		// Link nodes
-		Vector2 position = Vector2.zero;
 		for (int i = 0; i < nodes.Count; i++)
 		{
 			StoryElement node = nodes[i];
@@ -248,6 +247,29 @@ public class StoryGraphEditor : Editor
 
 			node.position = position;
 			position.x += 500;
+		}
+
+		//Dictionary<StoryElement, List<int>> choicesToNext_id = new Dictionary<StoryElement, List<int>>();
+		foreach (KeyValuePair<StoryElement, List<int>> pair in choicesToNext_id)
+		{
+			pair.Key.ClearDynamicPorts();
+			int i = 0;
+			foreach (int index in pair.Value)
+			{
+				// Get output and input ports
+				string portName = "Choice" + i;
+				NodePort fromPort = pair.Key.AddDynamicOutput(typeof(NodePort), ConnectionType.Override, TypeConstraint.Inherited, portName);
+				NodePort toPort = idToNode[index].GetInputPort("PreviousNode");
+
+				// Make sure the ports are not null
+				if (fromPort != null && toPort != null)
+				{
+					// Connect the nodes
+					fromPort.Connect(toPort);
+					EditorUtility.SetDirty(storyGraph);
+				}
+				i++;
+			}
 		}
 
 		// Generate the graph from the input
@@ -302,10 +324,12 @@ public class StoryGraphEditor : Editor
 				//storyGraph.nodes.Clear();
 				storyGraph.Clear();
 				object[] scenes = JsonConvert.DeserializeObject<object[]>(scenesStr.ToString());
+				Vector2 pos = new Vector2();
 				foreach (object scene in scenes)
 				{
-					ImportScene(storyGraph, scene.ToString());
+					ImportScene(storyGraph, scene.ToString(), pos);
 					EditorUtility.SetDirty(storyGraph);
+					pos.y += 500;
 				}
 			}
 		}
