@@ -1,5 +1,160 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7763457568710904219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c599ddc9a1b854f85859c7762a12fb, type: 3}
+  m_Name: Dialogue Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4392, y: 168}
+  ports:
+    keys:
+    - PreviousNode
+    - NextNode
+    values:
+    - _fieldName: PreviousNode
+      _node: {fileID: -7763457568710904219}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: NextNode
+        node: {fileID: 3990587650765412679}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: -7763457568710904219}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  Active: 0
+  Next: {fileID: 0}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  CharacterName: Truck-kun
+  Dialogue: "\u305D\u3046\u3060\u306D\u3002\u3054\u3081\u3093\u3002\u5E30\u308B\u308F"
+--- !u!114 &-7518169593489782796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e521cbea9de13974fa6f93bcb7fe9ae2, type: 3}
+  m_Name: Condition Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3528, y: 72}
+  ports:
+    keys:
+    - ConditionFails
+    - PreviousNode
+    - NextNode
+    values:
+    - _fieldName: ConditionFails
+      _node: {fileID: -7518169593489782796}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: 3990587650765412679}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: PreviousNode
+      _node: {fileID: -7518169593489782796}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: NextNode
+        node: {fileID: 3310511641579332763}
+        reroutePoints: []
+      - fieldName: NextNode
+        node: {fileID: 6834504129868757131}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: -7518169593489782796}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: -6645387307090576267}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  Active: 0
+  Next: {fileID: -6645387307090576267}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  ConditionFails:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  Variables: {fileID: 11400000, guid: 0b6eb79f1a6c9f6408206297fa0d3f1d, type: 2}
+  VariableIndex: 0
+  NumberValue: 0
+  TextValue: 
+  BooleanValue: 1
 --- !u!114 &-6664353289656554294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +235,7 @@ MonoBehaviour:
   m_Name: Dialogue Element
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3304, y: -8}
+  position: {x: 4040, y: -152}
   ports:
     keys:
     - PreviousNode
@@ -92,7 +247,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: NextNode
-        node: {fileID: 8531039356618266142}
+        node: {fileID: -7518169593489782796}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -259,6 +414,97 @@ MonoBehaviour:
     _dynamic: 0
   CharacterName: Truck-kun
   Dialogue: "\u306D\u3047\uFF01\u304A\u524D\u3055\u3001\u4E00\u76EE\u3060\u3051\u3067\u5206\u304B\u308B\u3051\u3069\u3001\u30C9\u30E9\u30A4\u30D6\u3057\u305F\u3053\u3068\u306D\u3084\u308D"
+--- !u!114 &-2822428263417136012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5078e2883b71e7438a5d965f15f77c8, type: 3}
+  m_Name: Choice Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2744, y: -24}
+  ports:
+    keys:
+    - PreviousNode
+    - NextNode
+    - Choice0
+    - Choice1
+    values:
+    - _fieldName: PreviousNode
+      _node: {fileID: -2822428263417136012}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: NextNode
+        node: {fileID: 1630067261029211013}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: -2822428263417136012}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Choice0
+      _node: {fileID: -2822428263417136012}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: 8531039356618266142}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+    - _fieldName: Choice1
+      _node: {fileID: -2822428263417136012}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: 6834504129868757131}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
+  Active: 0
+  Next: {fileID: 0}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  Choices:
+  - "\u306F\u3044\u308F\u304B\u3063\u305F"
+  - "\u305D\u3093\u306A\u306E\u3084\u3089\u306A\u3044\uFF01"
+  ShuffleChocies: 1
+  HideDialogue: 0
 --- !u!114 &-2811688087906590754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +549,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Active: 0
-  Next: {fileID: 1630067261029211013}
+  Next: {fileID: -961084660825109757}
   PreviousNode:
     _fieldName: 
     _node: {fileID: 0}
@@ -406,7 +652,7 @@ MonoBehaviour:
   m_Name: Dialogue Element
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3624, y: -8}
+  position: {x: 4424, y: -168}
   ports:
     keys:
     - PreviousNode
@@ -542,12 +788,17 @@ MonoBehaviour:
   - {fileID: 5270346473795117227}
   - {fileID: 290687722891792858}
   - {fileID: -961084660825109757}
-  - {fileID: 2632013494537357670}
   - {fileID: 8531039356618266142}
   - {fileID: -1865037604759176950}
   - {fileID: 1630067261029211013}
   - {fileID: -6645387307090576267}
   - {fileID: -2811688087906590754}
+  - {fileID: 3310511641579332763}
+  - {fileID: -2822428263417136012}
+  - {fileID: 6834504129868757131}
+  - {fileID: -7518169593489782796}
+  - {fileID: 3990587650765412679}
+  - {fileID: -7763457568710904219}
   StoryNames:
   - ExampleStory
 --- !u!114 &290687722891792858
@@ -652,14 +903,14 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: PreviousNode
-        node: {fileID: 2632013494537357670}
+        node: {fileID: -2822428263417136012}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
   Active: 0
-  Next: {fileID: 2632013494537357670}
+  Next: {fileID: -2822428263417136012}
   PreviousNode:
     _fieldName: 
     _node: {fileID: 0}
@@ -680,71 +931,6 @@ MonoBehaviour:
     _dynamic: 0
   CharacterName: Truck-kun
   Dialogue: "\u4FFA\u4E00\u7DD2\u3044\u3066\u3042\u3052\u308B\u304B\u3089\u6CD5\u5F8B\u3084\u3089\u8B66\u5BDF\u3084\u3089\u5FC3\u914D\u3044\u3089\u306A\u3044\uFF01\u3044\u3044\u304B\u3089\u4E57\u3063\u3066\u308D\uFF01"
---- !u!114 &2632013494537357670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c599ddc9a1b854f85859c7762a12fb, type: 3}
-  m_Name: Dialogue Element
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 2664, y: -8}
-  ports:
-    keys:
-    - PreviousNode
-    - NextNode
-    values:
-    - _fieldName: PreviousNode
-      _node: {fileID: 2632013494537357670}
-      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: NextNode
-        node: {fileID: 1630067261029211013}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: NextNode
-      _node: {fileID: 2632013494537357670}
-      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: PreviousNode
-        node: {fileID: 8531039356618266142}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  Active: 0
-  Next: {fileID: 8531039356618266142}
-  PreviousNode:
-    _fieldName: 
-    _node: {fileID: 0}
-    _typeQualifiedName: 
-    connections: []
-    _direction: 0
-    _connectionType: 0
-    _typeConstraint: 0
-    _dynamic: 0
-  NextNode:
-    _fieldName: 
-    _node: {fileID: 0}
-    _typeQualifiedName: 
-    connections: []
-    _direction: 0
-    _connectionType: 0
-    _typeConstraint: 0
-    _dynamic: 0
-  CharacterName: shujinko
-  Dialogue: "\u52D8\u5F01\u3057\u3066\u3048\u3047\uFF01"
 --- !u!114 &2759896806774999601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +1001,139 @@ MonoBehaviour:
   FadeOutTime: 0.001
   FadeOtherElements: 0
   WaitToFinish: 1
+--- !u!114 &3310511641579332763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3a75562b4f95147935acdf39324d46, type: 3}
+  m_Name: Affect Variable Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3528, y: -120}
+  ports:
+    keys:
+    - PreviousNode
+    - NextNode
+    values:
+    - _fieldName: PreviousNode
+      _node: {fileID: 3310511641579332763}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: NextNode
+        node: {fileID: 8531039356618266142}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: 3310511641579332763}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: -7518169593489782796}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  Active: 0
+  Next: {fileID: -7518169593489782796}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  Variables: {fileID: 11400000, guid: 0b6eb79f1a6c9f6408206297fa0d3f1d, type: 2}
+  VariableIndex: 0
+  NumberValue: 0
+  BooleanValue: 1
+  TextValue: 
+--- !u!114 &3990587650765412679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c599ddc9a1b854f85859c7762a12fb, type: 3}
+  m_Name: Dialogue Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 4024, y: 152}
+  ports:
+    keys:
+    - PreviousNode
+    - NextNode
+    values:
+    - _fieldName: PreviousNode
+      _node: {fileID: 3990587650765412679}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: ConditionFails
+        node: {fileID: -7518169593489782796}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: 3990587650765412679}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: -7763457568710904219}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  Active: 0
+  Next: {fileID: -1865037604759176950}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  CharacterName: shujinko
+  Dialogue: "\u7121\u514D\u8A31\u904B\u8EE2\u306F\u3084\u3089\u306A\u3044\u304B\u3089\u3084\u3081\u3066\uFF01"
 --- !u!114 &3994018969730546297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,6 +1265,74 @@ MonoBehaviour:
     _dynamic: 0
   StoryName: ExampleStory
   IsRoot: 1
+--- !u!114 &6834504129868757131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3a75562b4f95147935acdf39324d46, type: 3}
+  m_Name: Affect Variable Element
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 3192, y: 104}
+  ports:
+    keys:
+    - PreviousNode
+    - NextNode
+    values:
+    - _fieldName: PreviousNode
+      _node: {fileID: 6834504129868757131}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Choice1
+        node: {fileID: -2822428263417136012}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: NextNode
+      _node: {fileID: 6834504129868757131}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: PreviousNode
+        node: {fileID: -7518169593489782796}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  Active: 0
+  Next: {fileID: -7518169593489782796}
+  PreviousNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  NextNode:
+    _fieldName: 
+    _node: {fileID: 0}
+    _typeQualifiedName: 
+    connections: []
+    _direction: 0
+    _connectionType: 0
+    _typeConstraint: 0
+    _dynamic: 0
+  Variables: {fileID: 11400000, guid: 0b6eb79f1a6c9f6408206297fa0d3f1d, type: 2}
+  VariableIndex: 0
+  NumberValue: 0
+  BooleanValue: 0
+  TextValue: 
 --- !u!114 &7487686641615215702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,7 +1377,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Active: 0
-  Next: {fileID: 0}
+  Next: {fileID: -2811688087906590754}
   PreviousNode:
     _fieldName: 
     _node: {fileID: 0}
@@ -1024,7 +1411,7 @@ MonoBehaviour:
   m_Name: Load Minigame
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2984, y: -8}
+  position: {x: 3192, y: -40}
   ports:
     keys:
     - PreviousNode
@@ -1035,8 +1422,8 @@ MonoBehaviour:
       _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: NextNode
-        node: {fileID: 2632013494537357670}
+      - fieldName: Choice0
+        node: {fileID: -2822428263417136012}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1048,14 +1435,14 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: PreviousNode
-        node: {fileID: -6645387307090576267}
+        node: {fileID: 3310511641579332763}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
   Active: 0
-  Next: {fileID: -6645387307090576267}
+  Next: {fileID: 3310511641579332763}
   PreviousNode:
     _fieldName: 
     _node: {fileID: 0}
@@ -1082,3 +1469,8 @@ MonoBehaviour:
   - Minigame4
   - Minigame5
   selectedOptionIndex: 2
+  deactivatedCanvas:
+  - {fileID: 0}
+  - {fileID: 0}
+  deactivatedCamera:
+  - {fileID: 0}
