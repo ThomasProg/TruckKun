@@ -29,12 +29,9 @@ class B
 public class StoryGraphEditor : Editor
 {
 	[SerializeField]
-	private string subFolder = "JSON";
-
+	string assetDestinationPath = "Assets/JSON/ExampleStory.asset";
 	[SerializeField]
-	string assetDestinationPath = "Assets/ExampleStory.asset";
-	[SerializeField]
-	string assetSourcePath = "Assets/ExampleStory.asset";
+	string assetSourcePath = "Assets/JSON/ExampleStory.json";
 
 	void ExportJson(StoryGraph storyGraph, string subFolder)
 	{
@@ -286,17 +283,17 @@ public class StoryGraphEditor : Editor
 		storyGraph.RefreshStories();
 	}
 
-	void ImportJsonNextFrame(StoryGraph storyGraph, string subFolder)
+	void ImportJsonNextFrame(StoryGraph storyGraph)
 	{
 		// Add a custom button to the inspector
 		if (GUILayout.Button("Import to JSON"))
 		{
-			EditorApplication.delayCall += () => ImportJson(storyGraph, subFolder);
+			EditorApplication.delayCall += () => ImportJson(storyGraph, assetDestinationPath, assetSourcePath);
 
 		}
 	}
 
-	void ImportJson(StoryGraph s, string subFolder, string assetDestinationPath = "Assets/ExampleStory.asset")
+	void ImportJson(StoryGraph s, string assetDestinationPath , string assetSourcePath)
 	{
 		// Create an instance of the ScriptableObject
 		StoryGraph storyGraph = ScriptableObject.CreateInstance<StoryGraph>();
@@ -306,16 +303,15 @@ public class StoryGraphEditor : Editor
 
 
 
-		string jsonFolder = Path.Combine(Application.dataPath, subFolder);
+		string jsonFolder = assetSourcePath;
 
-		if (!Directory.Exists(jsonFolder))
+		if (!Directory.Exists(Path.GetDirectoryName(jsonFolder)))
 		{
-			Directory.CreateDirectory(jsonFolder);
-			Debug.LogError("Folder doesn't exist: " + jsonFolder);
+			//Directory.CreateDirectory(jsonFolder);
+			Debug.LogError("Folder doesn't exist: " + Path.GetDirectoryName(jsonFolder));
 		}
 
-		string filePath = Path.Combine(jsonFolder, /*storyGraph.name*/ "ExampleStory.json");
-		string fileContents = File.ReadAllText(filePath);
+		string fileContents = File.ReadAllText(assetSourcePath);
 
 		object scenarioStr;
 		if (JsonConvert.DeserializeObject<Dictionary<string, object>>(fileContents).TryGetValue("scenario", out scenarioStr))
@@ -354,26 +350,26 @@ public class StoryGraphEditor : Editor
 
 		GUILayout.Space(10);
 
-		ExportJson(storyGraph, subFolder);
+		ExportJson(storyGraph, assetSourcePath);
 
-		GUILayout.Space(300);
+		GUILayout.Space(10);
 
-		//GUILayout.BeginHorizontal();
-		//GUILayout.Label("From : ");
-		//// Specify the asset path where you want to save it
-		//assetSourcePath = GUILayout.TextField(assetSourcePath);
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("From : ");
+		// Specify the asset path where you want to save it
+		assetSourcePath = GUILayout.TextField(assetSourcePath);
 
-		//GUILayout.EndHorizontal();
+		GUILayout.EndHorizontal();
 
-		//GUILayout.Space(10);
+		GUILayout.Space(5);
 
-		//GUILayout.BeginHorizontal();
-		//GUILayout.Label("To : ");
-		//// Specify the asset path where you want to save it
-		//assetDestinationPath = GUILayout.TextField(assetDestinationPath);
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("To : ");
+		// Specify the asset path where you want to save it
+		assetDestinationPath = GUILayout.TextField(assetDestinationPath);
 
-		//GUILayout.EndHorizontal();
+		GUILayout.EndHorizontal();
 
-		ImportJsonNextFrame(storyGraph, subFolder);
+		ImportJsonNextFrame(storyGraph);
 	}
 }
