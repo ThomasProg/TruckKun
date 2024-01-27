@@ -17,6 +17,7 @@ using XNode;
 using Unity.VisualScripting;
 using UVNF.Core.Story.Other;
 using static BayatGames.SaveGameFree.Examples.ExampleSaveCustom;
+using Panda.Examples.PlayTag;
 
 [System.Serializable]
 class B
@@ -97,19 +98,66 @@ public class StoryGraphEditor : Editor
 			object speaker;
 			if (dic.TryGetValue("Speaker", out speaker))
 			{
-				DialogueElement dialogue = storyGraph.AddNode<DialogueElement>(); // ScriptableObject.CreateInstance<DialogueElement>();
-				newNode = dialogue;
+				// is Choice
+				//object choices;
+				//if (dic.TryGetValue("choices", out choices))
+				//{
+				//	ChoiceElement choiceElem = storyGraph.AddNode<ChoiceElement>();
+				//	newNode = choiceElem;
 
-				object jp;
-				if (dic.TryGetValue("JP", out jp))
-				{
-					dialogue.Dialogue = jp.ToString();
-				}
+				//	object[] choicesList = JsonConvert.DeserializeObject<object[]>(choices.ToString());
 
-				object en;
-				if (dic.TryGetValue("EN", out en))
+				//	foreach (object choice in choicesList)
+				//	{
+				//		object next_id;
+				//		if (dic.TryGetValue("next_id", out next_id))
+				//		{
+				//			choiceElem.AddChoice();
+				//			choiceElem.Choices[choiceElem.Choices.Count - 1].
+				//			//dialogue.Dialogue = next_id.ToString();
+				//		}
+
+				//		object jp;
+				//		if (dic.TryGetValue("JP", out jp))
+				//		{
+				//			//dialogue.Dialogue = jp.ToString();
+				//		}
+
+				//		object en;
+				//		if (dic.TryGetValue("EN", out en))
+				//		{
+				//			// @TODO 
+				//		}
+				//	}
+
+				//	//object jp;
+				//	//if (dic.TryGetValue("JP", out jp))
+				//	//{
+				//	//	dialogue.Dialogue = jp.ToString();
+
+				//	//object en;
+				//	//if (dic.TryGetValue("EN", out en))
+				//	//{
+				//	//	// @TODO 
+				//	//}
+				//}
+				//// is Dialogue
+				//else
 				{
-					// @TODO 
+					DialogueElement dialogue = storyGraph.AddNode<DialogueElement>();
+					newNode = dialogue;
+
+					object jp;
+					if (dic.TryGetValue("JP", out jp))
+					{
+						dialogue.Dialogue = jp.ToString();
+					}
+
+					object en;
+					if (dic.TryGetValue("EN", out en))
+					{
+						// @TODO 
+					}
 				}
 			}
 
@@ -147,13 +195,28 @@ public class StoryGraphEditor : Editor
 			// End Parse Node
 		}
 
+		// Link nodes
+		Vector2 position = Vector2.zero;
 		for (int i = 0; i < nodes.Count; i++)
 		{
 			StoryElement node = nodes[i];
-			int value;
-			if (nodeToNext_id.TryGetValue(node, out value))
+			int next_id;
+			if (nodeToNext_id.TryGetValue(node, out next_id))
 			{
-				// @TODO : link
+				position.y += 500;
+				StoryElement nextNode = idToNode[next_id];
+
+				// Get output and input ports
+				NodePort fromPort = node.GetOutputPort("NextNode");
+				NodePort toPort = nextNode.GetInputPort("PreviousNode");
+
+				// Make sure the ports are not null
+				if (fromPort != null && toPort != null)
+				{
+					// Connect the nodes
+					fromPort.Connect(toPort);
+					EditorUtility.SetDirty(storyGraph);
+				}
 			}
 			else if (i < nodes.Count - 1)
 			{
@@ -171,17 +234,17 @@ public class StoryGraphEditor : Editor
 					EditorUtility.SetDirty(storyGraph);
 				}
 			}
+
+			node.position = position;
+			position.x += 500;
 		}
 
 		// Generate the graph from the input
-		Vector2 position = Vector2.zero;
 		foreach (StoryElement node in nodes)
 		{
 			AssetDatabase.AddObjectToAsset(node, storyGraph);
-			node.position = position;
-			storyGraph.nodes.Add(node);
-			position.x += 500;
 		}
+
 		storyGraph.RefreshStories();
 	}
 
