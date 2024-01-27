@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -36,6 +37,10 @@ namespace UVNF.Core.Story.Dialogue
             {
                 VariableIndex = EditorGUILayout.Popup(VariableIndex, Variables.VariableNames());
             }
+            
+            NumberValue = EditorGUILayout.FloatField("Number", NumberValue);
+            TextValue = EditorGUILayout.TextField("Text", TextValue);
+            BooleanValue = Convert.ToBoolean(EditorGUILayout.Popup("Boolean", Convert.ToInt32(BooleanValue), new string[] { "False", "True" }));
         }
 #endif
 
