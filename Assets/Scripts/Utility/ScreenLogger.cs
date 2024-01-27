@@ -4,7 +4,6 @@
  * terms of the MIT license.
  */
 
-using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,27 +31,22 @@ namespace Utility
 
         #region Colors
         [SerializeField]
-        [BoxGroup("Output Colors")]
         [Tooltip("Standard log color")]
         private Color log = Color.white;
 
         [SerializeField]
-        [BoxGroup("Output Colors")]
         [Tooltip("Warning log color")]
         private Color warning = Color.yellow;
 
         [SerializeField]
-        [BoxGroup("Output Colors")]
         [Tooltip("Error log color")]
         private Color error = Color.red;
 
         [SerializeField]
-        [BoxGroup("Output Colors")]
         [Tooltip("Assert log color")]
         private Color assert = Color.red;
 
         [SerializeField]
-        [BoxGroup("Output Colors")]
         [Tooltip("Exception log color")]
         private Color exception = Color.red;
         #endregion
