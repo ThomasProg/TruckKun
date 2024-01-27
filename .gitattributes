@@ -10,4 +10,4 @@
 # Denote all files that are truly binary and should not be modified.
 *.png binary
 *.jpg binary
-*.asset filter=lfs diff=lfs merge=lfs -text
+*.asset merge=unityyamlmerge eol=lf
