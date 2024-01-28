@@ -26,7 +26,7 @@ class B
 };
 
 [CustomEditor(typeof(StoryGraph))]
-public class StoryGraphEditor : Editor
+public class StoryGraphEditor : UnityEditor.Editor
 {
 	[SerializeField]
 	string assetDestinationPath = "Assets/JSON/ExampleStory.asset";
