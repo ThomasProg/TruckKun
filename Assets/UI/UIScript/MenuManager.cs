@@ -8,6 +8,11 @@ public class MenuManager : MonoBehaviour
     public Sprite MenuButtonUp;
     public Sprite MenuButtonDown;
     public GameObject Buttons;
+    public AudioClip ClickClip;
+    public AudioClip BagClip;
+    public AudioClip PhoneClip;
+    public AudioClip MemoClip;
+    public AudioClip CardClip;
     void Start()
     {
         
