@@ -72,7 +72,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 			{ "truckkun_seifuku_normal", PathToSprite("Assets/Characters/truckkun/truckkun_vest_normal.png") },
 			{ "truckkun_seifuku_laugh", PathToSprite("Assets/Characters/truckkun/truckkun_vest_laugh.png") },
 			{ "truckkun_seifuku_blush", PathToSprite("Assets/Characters/truckkun/truckkun_vest_blush.png") },
-			{ "truckkun_yukata_annoyed", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_annoyed.png") },
+			{ "truckkun_yukata_annoyed", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_worry.png") },
 			{ "truckkun_yukata_blush", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_blush.png") },
 			{ "truckkun_yukata_normal", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_normal.png") },
 			{ "truckkun_yukata_laugh", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_laugh.png") },
