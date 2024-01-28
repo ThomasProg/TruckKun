@@ -1118,6 +1118,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 82.6
       objectReference: {fileID: 0}
+    - target: {fileID: 928732095922473602, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 97
+      objectReference: {fileID: 0}
     - target: {fileID: 1123833482741694570, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1129,6 +1133,10 @@ PrefabInstance:
     - target: {fileID: 1420785494714697387, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: AffectionRight
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852123564519404736, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2314800962844143789, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1482,6 +1490,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8052932844811751262, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8588f41b308066e45a88119b9c3cdf1e, type: 3}
     - target: {fileID: 8143452646517450791, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_Value
       value: 0
@@ -1571,7 +1583,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7872975804368147030, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
+    - {fileID: 2270938845299769586, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4784810313972785024, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       insertIndex: 5
