@@ -52,7 +52,17 @@ public class StoryGraphEditor : UnityEditor.Editor
 			{ "Night City", PathToSprite("Assets/Backgrounds/bg_winter.png") }
 		};
 
-		return strToBackground[key];
+		Sprite sprite;
+		if (strToBackground.TryGetValue(key, out sprite))
+		{
+			return sprite;
+		}
+		else
+		{
+			Debug.LogWarning("GetBackgroundSpriteFromKey() : invalid background : " + key);
+			return null;
+
+		}
 	}
 
 	Sprite GetCharacterSpriteFromKey(string key)
@@ -131,7 +141,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 
 			// Parse Node
 
-			StoryElement newNode = null;
+			List<StoryElement> newNodes = new List<StoryElement>();
 
 			// ChangeBackground
 			object backgroundObject;
@@ -143,7 +153,41 @@ public class StoryGraphEditor : UnityEditor.Editor
 
 				changeBackground.background = GetBackgroundSpriteFromKey(backgroundID);
 
-				newNode = changeBackground;
+				//ExitSceneElement exitScene = storyGraph.AddNode<ExitSceneElement>();
+				//exitScene.CharacterName = "megane";
+				//newNodes.Add(exitScene);
+
+				newNodes.Add(changeBackground);
+
+				//EnterSceneElement enterScene = storyGraph.AddNode<EnterSceneElement>();
+				//enterScene.CharacterName = "megane";
+				//newNodes.Add(enterScene);
+			}
+
+			// EnterScene
+			object enterScene;
+			if (dic.TryGetValue("EnterCharacter", out enterScene))
+			{
+				string spriteID = enterScene as string;
+				EnterSceneElement sceneElement = storyGraph.AddNode<EnterSceneElement>();
+
+				sceneElement.CharacterName = "megane";
+				sceneElement.Character = GetCharacterSpriteFromKey(spriteID);
+
+				newNodes.Add(sceneElement);
+			}
+
+			// ExitScene
+			object exitScene;
+			if (dic.TryGetValue("ExitCharacter", out exitScene))
+			{
+				string spriteID = exitScene as string;
+				ExitSceneElement sceneElement = storyGraph.AddNode<ExitSceneElement>();
+
+				sceneElement.CharacterName = "megane";
+				//sceneElement.Character = GetCharacterSpriteFromKey(spriteID);
+
+				newNodes.Add(sceneElement);
 			}
 
 			// ChangeSpriteElement
@@ -152,10 +196,10 @@ public class StoryGraphEditor : UnityEditor.Editor
 			{
 				string spriteID = characterObject as string;
 				ChangeSpriteElement changeSpriteElement = storyGraph.AddNode<ChangeSpriteElement>();
-				changeSpriteElement.CharacterName = "Truck kun";
+				changeSpriteElement.CharacterName = "megane";
 				changeSpriteElement.NewSprite = GetCharacterSpriteFromKey(spriteID);
 
-				newNode = changeSpriteElement;
+				newNodes.Add(changeSpriteElement);
 			}
 
 			object speaker;
@@ -166,7 +210,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 				if (dic.TryGetValue("choices", out choices))
 				{
 					ChoiceElement choiceElem = storyGraph.AddNode<ChoiceElement>();
-					newNode = choiceElem;
+					newNodes.Add(choiceElem);
 
 					object[] choicesList = JsonConvert.DeserializeObject<object[]>(choices.ToString());
 
@@ -209,7 +253,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 				else
 				{
 					DialogueElement dialogue = storyGraph.AddNode<DialogueElement>();
-					newNode = dialogue;
+					newNodes.Add(dialogue);
 
 					object speakerObj;
 					if (dic.TryGetValue("Speaker", out speakerObj))
@@ -231,7 +275,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 				}
 			}
 
-			if (newNode)
+			foreach (StoryElement newNode in newNodes)
 			{
 				EditorUtility.SetDirty(newNode);
 
