@@ -18,6 +18,7 @@ using Unity.VisualScripting;
 using UVNF.Core.Story.Other;
 using static BayatGames.SaveGameFree.Examples.ExampleSaveCustom;
 using Panda.Examples.PlayTag;
+using UVNF.Core.Story.Character;
 
 [System.Serializable]
 class B
@@ -33,7 +34,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 	[SerializeField]
 	string assetSourcePath = "Assets/JSON/ExampleStory.json";
 
-	Sprite BgPathToSprite(string spritePath)
+	Sprite PathToSprite(string spritePath)
 	{
 		return (Sprite)AssetDatabase.LoadAssetAtPath(spritePath, typeof(Sprite));
 
@@ -41,16 +42,36 @@ public class StoryGraphEditor : UnityEditor.Editor
 
 	Sprite GetBackgroundSpriteFromKey(string key)
 	{
-		Dictionary<string, Sprite> strToBackground = new Dictionary<string, Sprite>();
-
-		strToBackground.Add("hallway", BgPathToSprite("Assets/Backgrounds/bg_hallway.png"));
-		strToBackground.Add("classroom", BgPathToSprite("Assets/Backgrounds/bg_class.png"));
-		strToBackground.Add("councilroom", BgPathToSprite("Assets/Backgrounds/bg_hallway.png")); 
-		strToBackground.Add("summer festval", BgPathToSprite("Assets/Backgrounds/bg_festival.png"));
-		strToBackground.Add("main street of the city", BgPathToSprite("Assets/Backgrounds/bg_autumntown.png"));
-		strToBackground.Add("Night City", BgPathToSprite("Assets/Backgrounds/bg_winter.png"));
+		Dictionary<string, Sprite> strToBackground = new Dictionary<string, Sprite>
+		{
+			{ "hallway", PathToSprite("Assets/Backgrounds/bg_hallway.png") },
+			{ "classroom", PathToSprite("Assets/Backgrounds/bg_class.png") },
+			{ "councilroom", PathToSprite("Assets/Backgrounds/bg_hallway.png") },
+			{ "summer festval", PathToSprite("Assets/Backgrounds/bg_festival.png") },
+			{ "main street of the city", PathToSprite("Assets/Backgrounds/bg_autumntown.png") },
+			{ "Night City", PathToSprite("Assets/Backgrounds/bg_winter.png") }
+		};
 
 		return strToBackground[key];
+	}
+
+	Sprite GetCharacterSpriteFromKey(string key)
+	{
+		Dictionary<string, Sprite> strToSprite = new Dictionary<string, Sprite>
+		{
+			{ "truckkun_seifuku_normal", PathToSprite("Assets/Characters/truckkun/truckkun_vest_normal.png") },
+			{ "truckkun_seifuku_laugh", PathToSprite("Assets/Characters/truckkun/truckkun_vest_laugh.png") },
+			{ "truckkun_seifuku_blush", PathToSprite("Assets/Characters/truckkun/truckkun_vest_blush.png") },
+			{ "truckkun_yukata_annoyed", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_annoyed.png") },
+			{ "truckkun_yukata_blush", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_blush.png") },
+			{ "truckkun_yukata_normal", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_normal.png") },
+			{ "truckkun_yukata_laugh", PathToSprite("Assets/Characters/truckkun/truckkun_yukata_laugh.png") },
+			{ "truckkun_winter_normal", PathToSprite("Assets/Characters/truckkun/truckkun_winter_normal.png") },
+			{ "truckkun_winter_laugh", PathToSprite("Assets/Characters/truckkun/truckkun_winter_laugh.png") },
+			{ "truckkun_winter_blush", PathToSprite("Assets/Characters/truckkun/truckkun_winter_blush.png") }
+		};
+
+		return strToSprite[key];
 	}
 
 
@@ -59,6 +80,8 @@ public class StoryGraphEditor : UnityEditor.Editor
 		// Add a custom button to the inspector
 		if (GUILayout.Button("Export to JSON"))
 		{
+			//string str = JsonConvert.SerializeObject<Dictionary<string, object>>(e.ToString());
+
 			string json2 = JsonUtility.ToJson(storyGraph.nodes[0], true);
 			
 
@@ -110,6 +133,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 
 			StoryElement newNode = null;
 
+			// ChangeBackground
 			object backgroundObject;
 			if (dic.TryGetValue("Background", out backgroundObject))
 			{
@@ -122,10 +146,22 @@ public class StoryGraphEditor : UnityEditor.Editor
 				newNode = changeBackground;
 			}
 
+			// ChangeSpriteElement
+			object characterObject;
+			if (dic.TryGetValue("Character", out characterObject))
+			{
+				string spriteID = characterObject as string;
+				ChangeSpriteElement changeSpriteElement = storyGraph.AddNode<ChangeSpriteElement>();
+				changeSpriteElement.CharacterName = "Truck kun";
+				changeSpriteElement.NewSprite = GetCharacterSpriteFromKey(spriteID);
+
+				newNode = changeSpriteElement;
+			}
+
 			object speaker;
 			if (dic.TryGetValue("Speaker", out speaker))
 			{
-				// is Choice
+				// ChoiceElement
 				object choices;
 				if (dic.TryGetValue("choices", out choices))
 				{
@@ -169,7 +205,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 
 					choicesToNext_id.Add(choiceElem, next_idList);
 				}
-				// is Dialogue
+				// DialogueElement
 				else
 				{
 					DialogueElement dialogue = storyGraph.AddNode<DialogueElement>();
