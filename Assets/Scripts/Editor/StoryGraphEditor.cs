@@ -26,12 +26,33 @@ class B
 };
 
 [CustomEditor(typeof(StoryGraph))]
-public class StoryGraphEditor : Editor
+public class StoryGraphEditor : UnityEditor.Editor
 {
 	[SerializeField]
 	string assetDestinationPath = "Assets/JSON/ExampleStory.asset";
 	[SerializeField]
 	string assetSourcePath = "Assets/JSON/ExampleStory.json";
+
+	Sprite BgPathToSprite(string spritePath)
+	{
+		return (Sprite)AssetDatabase.LoadAssetAtPath(spritePath, typeof(Sprite));
+
+	}
+
+	Sprite GetBackgroundSpriteFromKey(string key)
+	{
+		Dictionary<string, Sprite> strToBackground = new Dictionary<string, Sprite>();
+
+		strToBackground.Add("hallway", BgPathToSprite("Assets/Backgrounds/bg_hallway.png"));
+		strToBackground.Add("classroom", BgPathToSprite("Assets/Backgrounds/bg_class.png"));
+		strToBackground.Add("councilroom", BgPathToSprite("Assets/Backgrounds/bg_hallway.png")); 
+		strToBackground.Add("summer festval", BgPathToSprite("Assets/Backgrounds/bg_festival.png"));
+		strToBackground.Add("main street of the city", BgPathToSprite("Assets/Backgrounds/bg_autumntown.png"));
+		strToBackground.Add("Night City", BgPathToSprite("Assets/Backgrounds/bg_winter.png"));
+
+		return strToBackground[key];
+	}
+
 
 	void ExportJson(StoryGraph storyGraph, string subFolder)
 	{
@@ -95,6 +116,9 @@ public class StoryGraphEditor : Editor
 				string backgroundID = backgroundObject as string;
 				ChangeBackground changeBackground = storyGraph.AddNode<ChangeBackground>();
 				changeBackground.backgroundName = backgroundID;
+
+				changeBackground.background = GetBackgroundSpriteFromKey(backgroundID);
+
 				newNode = changeBackground;
 			}
 

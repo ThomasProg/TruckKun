@@ -53,8 +53,8 @@ namespace UVNF.Core.Story.Utility
 		}
 #endif
 
-		public List<Canvas> deactivatedCanvas = new();
-		public List<Camera> deactivatedCamera = new();
+		private List<Canvas> deactivatedCanvas = new();
+		private List<Camera> deactivatedCamera = new();
 		
 		public void HideMainScene()
 		{
@@ -122,12 +122,12 @@ namespace UVNF.Core.Story.Utility
 			
 			foreach(var objCanvas in deactivatedCanvas)
 			{
-				objCanvas.enabled = true;
+				if (objCanvas != null) objCanvas.enabled = true;
 			}
-
+			
 			foreach (var objCamera in deactivatedCamera)
 			{
-				objCamera.enabled = true;
+				if (objCamera != null) objCamera.enabled = true;
 			}
 		}
 	}

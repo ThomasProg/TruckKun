@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Name: Load Minigame
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3192, y: -40}
+  position: {x: 3144, y: -56}
   ports:
     keys:
     - PreviousNode
@@ -1469,11 +1469,3 @@ MonoBehaviour:
   - Minigame4
   - Minigame5
   selectedOptionIndex: 2
-  deactivatedCanvas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  deactivatedCamera:
-  - {fileID: 0}
-  - {fileID: 0}
