@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UVNF/Scenes/MainMenu.unity
     guid: 046632eac3246af46a1b0df122c19128
-  - enabled: 1
+  - enabled: 0
     path: Assets/UVNF/Scenes/MainScene.unity
     guid: 70219dd3e86104e45842d71e8a7f0798
+  - enabled: 1
+    path: Assets/Scenes/VisualNovelScene.unity
+    guid: f4f3cdb2258af5a4e983cdb88a572a4a
   - enabled: 1
     path: Assets/DrivingGame/ExampleSceneUVNF.unity
     guid: 659297c4a451abf4bb62ac7fd8dba2eb
