@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DrivingGame/DrivingGame.unity
     guid: a19ac13002244b24f94780913f84fb8c
+  - enabled: 1
+    path: Assets/Scenes/EndingSceneHuman.unity
+    guid: d5c9e62c2b5c6c24984eb29ac12d9de6
+  - enabled: 1
+    path: Assets/Scenes/EndingSceneTruck.unity
+    guid: 1ed03dd4606a1094e9216056129a747c
   m_configObjects: {}

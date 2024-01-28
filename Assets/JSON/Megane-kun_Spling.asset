@@ -4699,6 +4699,7 @@ MonoBehaviour:
     - NextNode
     - Choice1
     - Choice0
+    - Choice2
     values:
     - _fieldName: PreviousNode
       _node: {fileID: -2949106302075108597}
@@ -4748,6 +4749,15 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 1
       _dynamic: 1
+    - _fieldName: Choice2
+      _node: {fileID: -2949106302075108597}
+      _typeQualifiedName: XNode.NodePort, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 1
+      _dynamic: 1
   Active: 0
   Next: {fileID: -115728532963097661}
   PreviousNode:
@@ -4771,6 +4781,7 @@ MonoBehaviour:
   Choices:
   - "\u91D1\u9B5A\u3059\u304F\u3044"
   - "\u308A\u3093\u3054\u98F4"
+  - 
   ShuffleChocies: 1
   HideDialogue: 0
 --- !u!114 &-2899588045719194061
@@ -11719,7 +11730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 0, y: 0}
+  position: {x: 24, y: -8}
   ports:
     keys:
     - PreviousNode
