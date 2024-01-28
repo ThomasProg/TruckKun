@@ -1070,13 +1070,9 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4784810313272908455, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 4784810313272908455, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 9163358075686766131, guid: 198b9351e9aab0d46a8b9df6eccbb608, type: 2}
     - target: {fileID: 4784810313972785024, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1095,19 +1091,15 @@ PrefabInstance:
       objectReference: {fileID: 965001804}
     - target: {fileID: 4784810313999144729, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_fontSize
-      value: 25.15
+      value: 19.4
       objectReference: {fileID: 0}
-    - target: {fileID: 4784810313999144729, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4784810313999144729, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 9163358075686766131, guid: 198b9351e9aab0d46a8b9df6eccbb608, type: 2}
     - target: {fileID: 4784810314356965893, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_AspectRatio
-      value: 1.7769029
+      value: 1.7773438
       objectReference: {fileID: 0}
     - target: {fileID: 5030363025860202840, guid: 795e0092d39ea594fbea9f7958d8fbbe, type: 3}
       propertyPath: m_IsActive
