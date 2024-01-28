@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using UVNF.Extensions;
+using UnityEngine.EventSystems;
 
 namespace UVNF.Core.UI
 {
@@ -45,7 +46,7 @@ namespace UVNF.Core.UI
         //TODO: Support more input systems
         private Mouse _currentMouse = Mouse.current;
 
-        private bool HasInput => _currentMouse.leftButton.wasPressedThisFrame;
+        public bool HasInput => InputReceiverPanel.Instance.WasClickedLastFrame;
 
         private void Awake()
         {
