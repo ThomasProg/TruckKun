@@ -123,7 +123,12 @@ namespace UVNF.Core
         {
             Character character = CharactersOnScreen.Find(x => x.Name == characterName);
 
-            Vector3 endPosition = new Vector3();
+			if (!character)
+			{
+				return;
+			}
+
+			Vector3 endPosition = new Vector3();
 
             switch (exitPosition)
             {
