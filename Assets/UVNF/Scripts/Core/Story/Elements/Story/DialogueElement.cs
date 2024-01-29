@@ -19,11 +19,22 @@ namespace UVNF.Core.Story.Dialogue
         public string CharacterName;
         [TextArea(3, 5)]
         public string Dialogue;
+		[TextArea(3, 5)]
+		public string DialogueEnglish;
 
-        private GUIStyle textAreaStyle;
+		private GUIStyle textAreaStyle;
+
+		public bool IsJapanese
+		{
+			get
+			{
+				return true;
+			}
+		}
+
 
 #if UNITY_EDITOR
-        public override void DisplayLayout(Rect layoutRect, GUIStyle label)
+		public override void DisplayLayout(Rect layoutRect, GUIStyle label)
         {
             if (textAreaStyle == null)
             {
@@ -39,12 +50,17 @@ namespace UVNF.Core.Story.Dialogue
             CharacterName = EditorGUILayout.TextField("Character", CharacterName);
             GUILayout.Label("Dialogue");
             Dialogue = EditorGUILayout.TextArea(Dialogue, textAreaStyle, GUILayout.MinHeight(50));
-        }
+			GUILayout.Label("DialogueEnglish");
+			DialogueEnglish = EditorGUILayout.TextArea(DialogueEnglish, textAreaStyle, GUILayout.MinHeight(50));
+		}
 #endif
 
         public override IEnumerator Execute(UVNFManager gameManager, UVNFCanvas canvas)
         {
-            return canvas.DisplayText(Dialogue, CharacterName);
-        }
+            if (IsJapanese)
+                return canvas.DisplayText(Dialogue, CharacterName);
+            else
+				return canvas.DisplayText(DialogueEnglish, CharacterName);
+		}
     }
 }

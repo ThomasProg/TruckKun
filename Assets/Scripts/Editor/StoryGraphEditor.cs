@@ -237,13 +237,12 @@ public class StoryGraphEditor : UnityEditor.Editor
 						if (choiceAttributes.TryGetValue("JP", out jp))
 						{
 							choiceElem.Choices[choiceElem.Choices.Count - 1] = jp.ToString();
-							//dialogue.Dialogue = jp.ToString();
 						}
 
 						object en;
 						if (choiceAttributes.TryGetValue("EN", out en))
 						{
-							// @TODO 
+							choiceElem.ChoicesEnglish[choiceElem.ChoicesEnglish.Count - 1] = en.ToString();
 						}
 					}
 
@@ -270,7 +269,7 @@ public class StoryGraphEditor : UnityEditor.Editor
 					object en;
 					if (dic.TryGetValue("EN", out en))
 					{
-						// @TODO 
+						dialogue.DialogueEnglish = en.ToString();
 					}
 				}
 			}

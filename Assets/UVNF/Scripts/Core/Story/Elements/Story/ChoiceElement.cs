@@ -17,26 +17,41 @@ namespace UVNF.Core.Story.Dialogue
 
         public override StoryElementTypes Type => StoryElementTypes.Story;
 
+        // Japanese
         public List<string> Choices = new List<string>();
+		// English
+		public List<string> ChoicesEnglish = new List<string>();
 
-        public bool ShuffleChocies = true;
+		public bool ShuffleChocies = true;
         public bool HideDialogue = false;
 
+
+        public bool IsJapanese
+        {
+            get
+            {
+                return true;
+            }
+        }
+
 #if UNITY_EDITOR
+        // Isn't used since CustomNodeEditors is changing this node's display
         public override void DisplayLayout(Rect layoutRect, GUIStyle label)
         {
             for (int i = 0; i < Choices.Count; i++)
             {
                 GUILayout.Label("Choice " + (i + 1), label);
                 Choices[i] = GUILayout.TextField(Choices[i]);
-                if (GUILayout.Button("-"))
+                if (i < ChoicesEnglish.Count)
+				    ChoicesEnglish[i] = GUILayout.TextField(ChoicesEnglish[i]);
+				if (GUILayout.Button("-"))
                 {
                     RemoveChoice(i);
                     return;
                 }
             }
 
-            if (GUILayout.Button("+"))
+			if (GUILayout.Button("+"))
                 AddChoice();
 
             ShuffleChocies = GUILayout.Toggle(ShuffleChocies, "Shuffle Choices");
@@ -46,23 +61,38 @@ namespace UVNF.Core.Story.Dialogue
         public void AddChoice()
         {
             Choices.Add(string.Empty);
-            AddDynamicOutput(typeof(NodePort), ConnectionType.Override, TypeConstraint.Inherited, "Choice" + (Choices.Count - 1));
+			ChoicesEnglish.Add(string.Empty);
+			AddDynamicOutput(typeof(NodePort), ConnectionType.Override, TypeConstraint.Inherited, "Choice" + (Choices.Count - 1));
         }
 
         public void RemoveChoice(int index)
         {
             Choices.RemoveAt(index);
-            RemoveDynamicPort(DynamicPorts.ElementAt(index));
+			ChoicesEnglish.RemoveAt(index);
+			RemoveDynamicPort(DynamicPorts.ElementAt(index));
         }
 #endif
 
         public override IEnumerator Execute(UVNFManager managerCallback, UVNFCanvas canvas)
         {
-            List<string> choiceList = Choices;
-            if (ShuffleChocies)
+            List<string> choiceList;
+
+            if (IsJapanese)
             {
-                choiceList.Shuffle();
+                choiceList = Choices;
+                if (ShuffleChocies)
+                {
+                    choiceList.Shuffle();
+                }
             }
+            else
+            {
+				choiceList = ChoicesEnglish;
+				if (ShuffleChocies)
+				{
+					choiceList.Shuffle();
+				}
+			}
 
             canvas.DisplayChoice(choiceList.ToArray(), HideDialogue);
             while (canvas.ChoiceCallback == -1) yield return null;
