@@ -45,9 +45,11 @@ namespace UVNF.Editor.Story.Nodes
                     for (int i = 0; i < node.Choices.Count; i++)
                     {
                         node.Choices[i] = GUILayout.TextField(node.Choices[i]);
-                        NodeEditorGUILayout.AddPortField(node.GetOutputPort("Choice" + i));
+                        if (i < node.ChoicesEnglish.Count)
+						    node.ChoicesEnglish[i] = GUILayout.TextField(node.ChoicesEnglish[i]);
+						NodeEditorGUILayout.AddPortField(node.GetOutputPort("Choice" + i));
 
-                        if (GUILayout.Button("-"))
+						if (GUILayout.Button("-"))
                             node.RemoveChoice(i);
 
                         GUILayout.Space(7.5f);
